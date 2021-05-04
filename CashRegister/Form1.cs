@@ -2,9 +2,6 @@
  * Maeve Wheaton
  * Mr. T
  * May 4, 2021
- * There are three warnings, I had three textboxes but there was an issue and I almost lost all my work, 
- * when I fixed it though they were gone and although I can no longer find them anywhere in the designer 
- * or code it says they are there, I've just been ignoring them.
  */
 using System;
 using System.Collections.Generic;
@@ -136,8 +133,8 @@ namespace CashRegister
         {
             //play printing sound
             SoundPlayer printReceiptSound = new SoundPlayer(Properties.Resources.quill_and_parchment);
-            printReceiptSound.PlayLooping(); //the sound of someone writing on a scroll but the writing doesn't start right at the begininng so it's not clear - wish I could edit the audio to just the part I want
-            Thread.Sleep(5000); //give sound time to get through the beginning, hopefully mean the writing starts when the reciept prints
+            printReceiptSound.PlayLooping(); //sound of handwritten parchment receipt
+            Thread.Sleep(5000); //give sound time to get through the beginning, so the writing starts when the reciept prints, rustling actually kind fits
 
             //everything else visible = false
             lovePotionLabel.Visible = false;
