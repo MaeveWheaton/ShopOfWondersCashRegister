@@ -160,6 +160,7 @@ namespace CashRegister
             //receiptOutput and newOrderButton visible
             receiptOuput.Visible = true;
             newOrderButton.Visible = true;
+            exitButton.Visible = true;
 
             //order number calculation, equal to the number of items bought
             orderNumber = amountLovePotion + amountHealingPotion + amountSpellBook;
@@ -167,7 +168,7 @@ namespace CashRegister
             //print one line at a time, pause inbetween
             //heading
             int pause = 1000;
-            receiptOuput.Text = "         The Little Shop of Wonders";
+            receiptOuput.Text = "          The Little Shop of Wonders";
             Refresh();
             Thread.Sleep(pause);
             receiptOuput.Text += $"\n   Order Number {orderNumber}";
@@ -198,21 +199,21 @@ namespace CashRegister
             }
 
             //totals
-            receiptOuput.Text += $"\n\n   Subtotal                  {totalOrderCost.ToString("$ .00")}";
+            receiptOuput.Text += $"\n\n   Subtotal                {totalOrderCost.ToString("$ .00")}";
             Refresh();
             Thread.Sleep(pause); 
-            receiptOuput.Text += $"\n   Tax                       {taxAmount.ToString("$ .00")}";
+            receiptOuput.Text += $"\n   Tax                     {taxAmount.ToString("$ .00")}";
             Refresh();
             Thread.Sleep(pause);
-            receiptOuput.Text += $"\n   Total                      {totalCost.ToString("$ .00")}";
+            receiptOuput.Text += $"\n   Total                    {totalCost.ToString("$ .00")}";
             Refresh(); 
             Thread.Sleep(pause);
 
             //change
-            receiptOuput.Text += $"\n\n   Tendered                 {amountTendered.ToString("$ .00")}";
+            receiptOuput.Text += $"\n\n   Tendered               {amountTendered.ToString("$ .00")}";
             Refresh();
             Thread.Sleep(pause);
-            receiptOuput.Text += $"\n   Change                   {changeRequired.ToString("$ .00")}";
+            receiptOuput.Text += $"\n   Change                 {changeRequired.ToString("$ .00")}";
             Refresh();
             Thread.Sleep(pause);
 
@@ -225,6 +226,7 @@ namespace CashRegister
 
             //enable newOrderButton
             newOrderButton.Enabled = true;
+            exitButton.Enabled = true;
         }
 
         private void newOrderButton_Click(object sender, EventArgs e)
@@ -250,18 +252,26 @@ namespace CashRegister
             //receiptOutput and newOrderButton invisible
             receiptOuput.Visible = false;
             newOrderButton.Visible = false;
+            exitButton.Visible = false;
 
             //clear all input boxes and output areas
             numberLoveInput.Clear();
             numberHealingInput.Clear();
             numberBookInput.Clear();
-            totalsOutput.Text = "";
+            totalsOutput.Text = "$\n$\n$";
             tenderedInput.Clear();
-            changeOutput.Text = "";
+            changeOutput.Text = "$";
 
-            //disable change and receipt buttons
+            //disable buttons exept total
             changeButton.Enabled = false;
-            printReceiptButton.Enabled = false;            
+            printReceiptButton.Enabled = false;
+            newOrderButton.Enabled = false;
+            exitButton.Enabled = false;
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void healingPotionPicture_Click(object sender, EventArgs e)
@@ -286,6 +296,6 @@ namespace CashRegister
             Refresh();
             Thread.Sleep(6000);
             sSecretMessage.Visible = false;
-        }
+        }                
     }
 }

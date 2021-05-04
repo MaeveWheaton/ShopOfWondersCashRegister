@@ -60,6 +60,7 @@ namespace CashRegister
             this.hSecretMessage = new System.Windows.Forms.Label();
             this.lSecretMessage = new System.Windows.Forms.Label();
             this.sSecretMessage = new System.Windows.Forms.Label();
+            this.exitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.spellBookPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.healingPotionPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lovePotionPicture)).BeginInit();
@@ -231,9 +232,9 @@ namespace CashRegister
             this.totalsOutput.ForeColor = System.Drawing.Color.White;
             this.totalsOutput.Location = new System.Drawing.Point(616, 591);
             this.totalsOutput.Name = "totalsOutput";
-            this.totalsOutput.Size = new System.Drawing.Size(25, 171);
+            this.totalsOutput.Size = new System.Drawing.Size(44, 171);
             this.totalsOutput.TabIndex = 22;
-            this.totalsOutput.Text = "\r\n\r\n\r\n";
+            this.totalsOutput.Text = "$\r\n$\r\n$";
             // 
             // lineLabel
             // 
@@ -265,9 +266,9 @@ namespace CashRegister
             this.changeOutput.ForeColor = System.Drawing.Color.White;
             this.changeOutput.Location = new System.Drawing.Point(616, 1003);
             this.changeOutput.Name = "changeOutput";
-            this.changeOutput.Size = new System.Drawing.Size(25, 57);
+            this.changeOutput.Size = new System.Drawing.Size(44, 57);
             this.changeOutput.TabIndex = 27;
-            this.changeOutput.Text = "\r\n";
+            this.changeOutput.Text = "$";
             // 
             // changeLabel
             // 
@@ -304,7 +305,7 @@ namespace CashRegister
             | System.Windows.Forms.AnchorStyles.Right)));
             this.receiptOuput.BackColor = System.Drawing.Color.Transparent;
             this.receiptOuput.Image = ((System.Drawing.Image)(resources.GetObject("receiptOuput.Image")));
-            this.receiptOuput.Location = new System.Drawing.Point(82, 122);
+            this.receiptOuput.Location = new System.Drawing.Point(82, 128);
             this.receiptOuput.Name = "receiptOuput";
             this.receiptOuput.Size = new System.Drawing.Size(842, 916);
             this.receiptOuput.TabIndex = 29;
@@ -319,7 +320,7 @@ namespace CashRegister
             this.newOrderButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.newOrderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newOrderButton.ForeColor = System.Drawing.Color.White;
-            this.newOrderButton.Location = new System.Drawing.Point(284, 1075);
+            this.newOrderButton.Location = new System.Drawing.Point(91, 1074);
             this.newOrderButton.Name = "newOrderButton";
             this.newOrderButton.Size = new System.Drawing.Size(391, 86);
             this.newOrderButton.TabIndex = 30;
@@ -364,8 +365,9 @@ namespace CashRegister
             this.totalErrorMessageLabel.ForeColor = System.Drawing.Color.White;
             this.totalErrorMessageLabel.Location = new System.Drawing.Point(686, 473);
             this.totalErrorMessageLabel.Name = "totalErrorMessageLabel";
-            this.totalErrorMessageLabel.Size = new System.Drawing.Size(0, 57);
+            this.totalErrorMessageLabel.Size = new System.Drawing.Size(39, 57);
             this.totalErrorMessageLabel.TabIndex = 36;
+            this.totalErrorMessageLabel.Text = " ";
             // 
             // changeErrorMessageLabel
             // 
@@ -409,13 +411,31 @@ namespace CashRegister
             this.sSecretMessage.AutoSize = true;
             this.sSecretMessage.BackColor = System.Drawing.Color.White;
             this.sSecretMessage.Font = new System.Drawing.Font("Segoe Script", 8.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sSecretMessage.Location = new System.Drawing.Point(630, 916);
+            this.sSecretMessage.Location = new System.Drawing.Point(647, 916);
             this.sSecretMessage.Name = "sSecretMessage";
             this.sSecretMessage.Size = new System.Drawing.Size(329, 176);
             this.sSecretMessage.TabIndex = 40;
             this.sSecretMessage.Text = "Various spell books \r\nthat will teach you \r\na variety of magical \r\nincantations. " +
     "$25.50";
             this.sSecretMessage.Visible = false;
+            // 
+            // exitButton
+            // 
+            this.exitButton.BackColor = System.Drawing.Color.Transparent;
+            this.exitButton.Enabled = false;
+            this.exitButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.exitButton.FlatAppearance.BorderSize = 2;
+            this.exitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitButton.ForeColor = System.Drawing.Color.White;
+            this.exitButton.Location = new System.Drawing.Point(522, 1074);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(391, 86);
+            this.exitButton.TabIndex = 41;
+            this.exitButton.Text = "Leave Shop";
+            this.exitButton.UseVisualStyleBackColor = false;
+            this.exitButton.Visible = false;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // Form1
             // 
@@ -425,11 +445,12 @@ namespace CashRegister
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1006, 1216);
+            this.Controls.Add(this.receiptOuput);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.sSecretMessage);
             this.Controls.Add(this.lSecretMessage);
             this.Controls.Add(this.hSecretMessage);
             this.Controls.Add(this.totalErrorMessageLabel);
-            this.Controls.Add(this.receiptOuput);
             this.Controls.Add(this.numberBookInput);
             this.Controls.Add(this.numberHealingInput);
             this.Controls.Add(this.numberLoveInput);
@@ -499,6 +520,7 @@ namespace CashRegister
         private System.Windows.Forms.Label hSecretMessage;
         private System.Windows.Forms.Label lSecretMessage;
         private System.Windows.Forms.Label sSecretMessage;
+        private System.Windows.Forms.Button exitButton;
     }
 }
 
