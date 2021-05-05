@@ -61,6 +61,11 @@ namespace CashRegister
             this.lSecretMessage = new System.Windows.Forms.Label();
             this.sSecretMessage = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
+            this.checkCodeButton = new System.Windows.Forms.Button();
+            this.discountCodeInput = new System.Windows.Forms.TextBox();
+            this.firstNewOrderButton = new System.Windows.Forms.Button();
+            this.firstExitButton = new System.Windows.Forms.Button();
+            this.notValidMessageLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.spellBookPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.healingPotionPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lovePotionPicture)).BeginInit();
@@ -76,7 +81,7 @@ namespace CashRegister
             this.titleLabel.Location = new System.Drawing.Point(-1, -2);
             this.titleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(1010, 81);
+            this.titleLabel.Size = new System.Drawing.Size(1130, 81);
             this.titleLabel.TabIndex = 0;
             this.titleLabel.Text = "The Little Shop of Wonders";
             this.titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -144,7 +149,7 @@ namespace CashRegister
             this.spellBookPicture.BackColor = System.Drawing.Color.Transparent;
             this.spellBookPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.spellBookPicture.Image = ((System.Drawing.Image)(resources.GetObject("spellBookPicture.Image")));
-            this.spellBookPicture.Location = new System.Drawing.Point(740, 890);
+            this.spellBookPicture.Location = new System.Drawing.Point(886, 901);
             this.spellBookPicture.Name = "spellBookPicture";
             this.spellBookPicture.Size = new System.Drawing.Size(128, 128);
             this.spellBookPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -171,7 +176,7 @@ namespace CashRegister
             this.lovePotionPicture.BackColor = System.Drawing.Color.Transparent;
             this.lovePotionPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.lovePotionPicture.Image = ((System.Drawing.Image)(resources.GetObject("lovePotionPicture.Image")));
-            this.lovePotionPicture.Location = new System.Drawing.Point(696, 82);
+            this.lovePotionPicture.Location = new System.Drawing.Point(836, 82);
             this.lovePotionPicture.Name = "lovePotionPicture";
             this.lovePotionPicture.Size = new System.Drawing.Size(128, 128);
             this.lovePotionPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -203,9 +208,9 @@ namespace CashRegister
             this.totalsLabel.ForeColor = System.Drawing.Color.White;
             this.totalsLabel.Location = new System.Drawing.Point(154, 591);
             this.totalsLabel.Name = "totalsLabel";
-            this.totalsLabel.Size = new System.Drawing.Size(175, 171);
+            this.totalsLabel.Size = new System.Drawing.Size(175, 228);
             this.totalsLabel.TabIndex = 20;
-            this.totalsLabel.Text = "Subtotal\r\nTax\r\nTotal";
+            this.totalsLabel.Text = "Subtotal\r\nTax\r\n\r\nTotal";
             // 
             // changeButton
             // 
@@ -216,7 +221,7 @@ namespace CashRegister
             this.changeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.changeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.changeButton.ForeColor = System.Drawing.Color.White;
-            this.changeButton.Location = new System.Drawing.Point(284, 901);
+            this.changeButton.Location = new System.Drawing.Point(284, 929);
             this.changeButton.Name = "changeButton";
             this.changeButton.Size = new System.Drawing.Size(391, 86);
             this.changeButton.TabIndex = 21;
@@ -232,15 +237,15 @@ namespace CashRegister
             this.totalsOutput.ForeColor = System.Drawing.Color.White;
             this.totalsOutput.Location = new System.Drawing.Point(616, 591);
             this.totalsOutput.Name = "totalsOutput";
-            this.totalsOutput.Size = new System.Drawing.Size(44, 171);
+            this.totalsOutput.Size = new System.Drawing.Size(44, 228);
             this.totalsOutput.TabIndex = 22;
-            this.totalsOutput.Text = "$\r\n$\r\n$";
+            this.totalsOutput.Text = "$\r\n$\r\n\r\n$";
             // 
             // lineLabel
             // 
             this.lineLabel.BackColor = System.Drawing.Color.White;
             this.lineLabel.Font = new System.Drawing.Font("Segoe Script", 8.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lineLabel.Location = new System.Drawing.Point(123, 776);
+            this.lineLabel.Location = new System.Drawing.Point(123, 838);
             this.lineLabel.Name = "lineLabel";
             this.lineLabel.Size = new System.Drawing.Size(673, 12);
             this.lineLabel.TabIndex = 23;
@@ -252,7 +257,7 @@ namespace CashRegister
             this.tenderedLabel.BackColor = System.Drawing.Color.Transparent;
             this.tenderedLabel.Font = new System.Drawing.Font("Segoe Script", 9.900001F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tenderedLabel.ForeColor = System.Drawing.Color.White;
-            this.tenderedLabel.Location = new System.Drawing.Point(154, 809);
+            this.tenderedLabel.Location = new System.Drawing.Point(154, 856);
             this.tenderedLabel.Name = "tenderedLabel";
             this.tenderedLabel.Size = new System.Drawing.Size(192, 57);
             this.tenderedLabel.TabIndex = 24;
@@ -264,7 +269,7 @@ namespace CashRegister
             this.changeOutput.BackColor = System.Drawing.Color.Transparent;
             this.changeOutput.Font = new System.Drawing.Font("Segoe Script", 9.900001F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.changeOutput.ForeColor = System.Drawing.Color.White;
-            this.changeOutput.Location = new System.Drawing.Point(616, 1003);
+            this.changeOutput.Location = new System.Drawing.Point(607, 1037);
             this.changeOutput.Name = "changeOutput";
             this.changeOutput.Size = new System.Drawing.Size(44, 57);
             this.changeOutput.TabIndex = 27;
@@ -276,7 +281,7 @@ namespace CashRegister
             this.changeLabel.BackColor = System.Drawing.Color.Transparent;
             this.changeLabel.Font = new System.Drawing.Font("Segoe Script", 9.900001F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.changeLabel.ForeColor = System.Drawing.Color.White;
-            this.changeLabel.Location = new System.Drawing.Point(154, 1003);
+            this.changeLabel.Location = new System.Drawing.Point(154, 1037);
             this.changeLabel.Name = "changeLabel";
             this.changeLabel.Size = new System.Drawing.Size(160, 57);
             this.changeLabel.TabIndex = 26;
@@ -291,7 +296,7 @@ namespace CashRegister
             this.printReceiptButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.printReceiptButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printReceiptButton.ForeColor = System.Drawing.Color.White;
-            this.printReceiptButton.Location = new System.Drawing.Point(284, 1095);
+            this.printReceiptButton.Location = new System.Drawing.Point(363, 1118);
             this.printReceiptButton.Name = "printReceiptButton";
             this.printReceiptButton.Size = new System.Drawing.Size(391, 86);
             this.printReceiptButton.TabIndex = 28;
@@ -305,9 +310,9 @@ namespace CashRegister
             | System.Windows.Forms.AnchorStyles.Right)));
             this.receiptOuput.BackColor = System.Drawing.Color.Transparent;
             this.receiptOuput.Image = ((System.Drawing.Image)(resources.GetObject("receiptOuput.Image")));
-            this.receiptOuput.Location = new System.Drawing.Point(82, 128);
+            this.receiptOuput.Location = new System.Drawing.Point(122, 122);
             this.receiptOuput.Name = "receiptOuput";
-            this.receiptOuput.Size = new System.Drawing.Size(842, 916);
+            this.receiptOuput.Size = new System.Drawing.Size(842, 938);
             this.receiptOuput.TabIndex = 29;
             this.receiptOuput.Visible = false;
             // 
@@ -320,7 +325,7 @@ namespace CashRegister
             this.newOrderButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.newOrderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newOrderButton.ForeColor = System.Drawing.Color.White;
-            this.newOrderButton.Location = new System.Drawing.Point(91, 1074);
+            this.newOrderButton.Location = new System.Drawing.Point(131, 1080);
             this.newOrderButton.Name = "newOrderButton";
             this.newOrderButton.Size = new System.Drawing.Size(391, 86);
             this.newOrderButton.TabIndex = 30;
@@ -331,7 +336,7 @@ namespace CashRegister
             // 
             // tenderedInput
             // 
-            this.tenderedInput.Location = new System.Drawing.Point(626, 809);
+            this.tenderedInput.Location = new System.Drawing.Point(626, 853);
             this.tenderedInput.Name = "tenderedInput";
             this.tenderedInput.Size = new System.Drawing.Size(100, 60);
             this.tenderedInput.TabIndex = 31;
@@ -398,7 +403,7 @@ namespace CashRegister
             this.lSecretMessage.AutoSize = true;
             this.lSecretMessage.BackColor = System.Drawing.Color.White;
             this.lSecretMessage.Font = new System.Drawing.Font("Segoe Script", 8.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lSecretMessage.Location = new System.Drawing.Point(630, 135);
+            this.lSecretMessage.Location = new System.Drawing.Point(749, 238);
             this.lSecretMessage.Name = "lSecretMessage";
             this.lSecretMessage.Size = new System.Drawing.Size(348, 220);
             this.lSecretMessage.TabIndex = 39;
@@ -411,7 +416,7 @@ namespace CashRegister
             this.sSecretMessage.AutoSize = true;
             this.sSecretMessage.BackColor = System.Drawing.Color.White;
             this.sSecretMessage.Font = new System.Drawing.Font("Segoe Script", 8.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sSecretMessage.Location = new System.Drawing.Point(647, 916);
+            this.sSecretMessage.Location = new System.Drawing.Point(768, 939);
             this.sSecretMessage.Name = "sSecretMessage";
             this.sSecretMessage.Size = new System.Drawing.Size(329, 176);
             this.sSecretMessage.TabIndex = 40;
@@ -428,7 +433,7 @@ namespace CashRegister
             this.exitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitButton.ForeColor = System.Drawing.Color.White;
-            this.exitButton.Location = new System.Drawing.Point(522, 1074);
+            this.exitButton.Location = new System.Drawing.Point(557, 1080);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(391, 86);
             this.exitButton.TabIndex = 41;
@@ -437,6 +442,74 @@ namespace CashRegister
             this.exitButton.Visible = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // checkCodeButton
+            // 
+            this.checkCodeButton.BackColor = System.Drawing.Color.Transparent;
+            this.checkCodeButton.Enabled = false;
+            this.checkCodeButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.checkCodeButton.FlatAppearance.BorderSize = 2;
+            this.checkCodeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.checkCodeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkCodeButton.ForeColor = System.Drawing.Color.White;
+            this.checkCodeButton.Location = new System.Drawing.Point(803, 673);
+            this.checkCodeButton.Name = "checkCodeButton";
+            this.checkCodeButton.Size = new System.Drawing.Size(294, 73);
+            this.checkCodeButton.TabIndex = 42;
+            this.checkCodeButton.Text = "Check Code";
+            this.checkCodeButton.UseVisualStyleBackColor = false;
+            this.checkCodeButton.Click += new System.EventHandler(this.checkCodeButton_Click);
+            // 
+            // discountCodeInput
+            // 
+            this.discountCodeInput.Location = new System.Drawing.Point(803, 591);
+            this.discountCodeInput.Name = "discountCodeInput";
+            this.discountCodeInput.Size = new System.Drawing.Size(294, 60);
+            this.discountCodeInput.TabIndex = 43;
+            // 
+            // firstNewOrderButton
+            // 
+            this.firstNewOrderButton.BackColor = System.Drawing.Color.Transparent;
+            this.firstNewOrderButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.firstNewOrderButton.FlatAppearance.BorderSize = 2;
+            this.firstNewOrderButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.firstNewOrderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.firstNewOrderButton.ForeColor = System.Drawing.Color.White;
+            this.firstNewOrderButton.Location = new System.Drawing.Point(40, 1118);
+            this.firstNewOrderButton.Name = "firstNewOrderButton";
+            this.firstNewOrderButton.Size = new System.Drawing.Size(289, 86);
+            this.firstNewOrderButton.TabIndex = 44;
+            this.firstNewOrderButton.Text = "New Order";
+            this.firstNewOrderButton.UseVisualStyleBackColor = false;
+            this.firstNewOrderButton.Click += new System.EventHandler(this.firstNewOrderButton_Click);
+            // 
+            // firstExitButton
+            // 
+            this.firstExitButton.BackColor = System.Drawing.Color.Transparent;
+            this.firstExitButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.firstExitButton.FlatAppearance.BorderSize = 2;
+            this.firstExitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.firstExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.firstExitButton.ForeColor = System.Drawing.Color.White;
+            this.firstExitButton.Location = new System.Drawing.Point(792, 1118);
+            this.firstExitButton.Name = "firstExitButton";
+            this.firstExitButton.Size = new System.Drawing.Size(289, 86);
+            this.firstExitButton.TabIndex = 45;
+            this.firstExitButton.Text = "Leave Shop";
+            this.firstExitButton.UseVisualStyleBackColor = false;
+            this.firstExitButton.Click += new System.EventHandler(this.firstExitButton_Click);
+            // 
+            // notValidMessageLabel
+            // 
+            this.notValidMessageLabel.AutoSize = true;
+            this.notValidMessageLabel.BackColor = System.Drawing.Color.Transparent;
+            this.notValidMessageLabel.Font = new System.Drawing.Font("Segoe Script", 9.900001F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notValidMessageLabel.ForeColor = System.Drawing.Color.White;
+            this.notValidMessageLabel.Location = new System.Drawing.Point(802, 766);
+            this.notValidMessageLabel.Name = "notValidMessageLabel";
+            this.notValidMessageLabel.Size = new System.Drawing.Size(25, 57);
+            this.notValidMessageLabel.TabIndex = 46;
+            this.notValidMessageLabel.Text = "\r\n";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
@@ -444,18 +517,23 @@ namespace CashRegister
             this.AutoSize = true;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1006, 1216);
-            this.Controls.Add(this.receiptOuput);
+            this.ClientSize = new System.Drawing.Size(1126, 1216);
             this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.newOrderButton);
+            this.Controls.Add(this.receiptOuput);
             this.Controls.Add(this.sSecretMessage);
             this.Controls.Add(this.lSecretMessage);
             this.Controls.Add(this.hSecretMessage);
+            this.Controls.Add(this.notValidMessageLabel);
+            this.Controls.Add(this.firstExitButton);
+            this.Controls.Add(this.firstNewOrderButton);
+            this.Controls.Add(this.discountCodeInput);
+            this.Controls.Add(this.checkCodeButton);
             this.Controls.Add(this.totalErrorMessageLabel);
             this.Controls.Add(this.numberBookInput);
             this.Controls.Add(this.numberHealingInput);
             this.Controls.Add(this.numberLoveInput);
             this.Controls.Add(this.tenderedInput);
-            this.Controls.Add(this.newOrderButton);
             this.Controls.Add(this.printReceiptButton);
             this.Controls.Add(this.changeOutput);
             this.Controls.Add(this.changeLabel);
@@ -521,6 +599,11 @@ namespace CashRegister
         private System.Windows.Forms.Label lSecretMessage;
         private System.Windows.Forms.Label sSecretMessage;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Button checkCodeButton;
+        private System.Windows.Forms.TextBox discountCodeInput;
+        private System.Windows.Forms.Button firstNewOrderButton;
+        private System.Windows.Forms.Button firstExitButton;
+        private System.Windows.Forms.Label notValidMessageLabel;
     }
 }
 

@@ -31,12 +31,15 @@ namespace CashRegister
         double totalOrderCost;
         double taxRate = 0.13;
         double taxAmount;
-        double totalCost;
+        double totalCost;             
 
         double amountTendered;
         double changeRequired;
 
-        int orderNumber;
+        double discountAmount;
+        int discountBlocker = 0; //use so only one code per order
+
+        int orderNumber = 1;
                 
 
         public Form1()
@@ -44,7 +47,7 @@ namespace CashRegister
             InitializeComponent();          
         }
 
-        private void totalButton_Click(object sender, EventArgs e)
+        private void totalButton_Click(object sender, EventArgs e) //total cost of items
         {
             try //in case letter or decimal is entered
             {
@@ -73,23 +76,89 @@ namespace CashRegister
                 totalCost = totalOrderCost + taxAmount;
 
                 //display in totalsLabel
-                totalsOutput.Text = $"{totalOrderCost.ToString("C")}\n{taxAmount.ToString("C")}\n{totalCost.ToString("C")}";                             
+                totalsOutput.Text = $"{totalOrderCost.ToString("C")}\n{taxAmount.ToString("C")}\n\n{totalCost.ToString("C")}";                             
 
                 //pause to allow sound to play, then stop sound
                 Thread.Sleep(2000);
                 bottleClinkSound.Stop();
 
-                //enable change button 
+                //enable next buttons, disable total
+                totalButton.Enabled = false;
                 changeButton.Enabled = true;
+                checkCodeButton.Enabled = true;
             }
             catch
             {
                 totalErrorMessageLabel.Text = "Please enter\nwhole numbers\nonly.";
             }                       
         }
-
-        private void changeButton_Click(object sender, EventArgs e)
+        private void checkCodeButton_Click(object sender, EventArgs e) //check to apply discount code
         {
+            try
+            {
+                //clear error message label
+                notValidMessageLabel.Text = "";
+
+                //dicount variable, unique to this function
+                string discountCodeOne = "HP+10";
+                string discountCodeTwo = "HappilyEA";
+                string discountCodeThree = "Pg364";
+                double discountOneValue = 10; //10 dollars off
+                double discountTwoValue = .10; //10% off
+                double discountThreeValue = .20; //20% off                               
+
+                if (discountCodeInput.Text == discountCodeOne && discountBlocker == 0)
+                {
+                    //calculate discount and new total
+                    discountAmount = discountOneValue;
+                    totalCost = totalCost - discountAmount;
+
+                    //change total display
+                    totalsLabel.Text = "Subtotal\nTax\nDiscount\nTotal";
+                    totalsOutput.Text = $"{totalOrderCost.ToString("C")}\n{taxAmount.ToString("C")}\n{discountAmount.ToString("C")}\n{totalCost.ToString("C")}";
+
+                    //prevent another code from being applied
+                    discountBlocker = 1;
+                }
+                else if (discountCodeInput.Text == discountCodeTwo && discountBlocker == 0)
+                {
+                    discountAmount = totalCost * discountTwoValue;
+                    totalCost = totalCost - discountAmount;
+                    totalsLabel.Text = "Subtotal\nTax\nDiscount\nTotal";
+                    totalsOutput.Text = $"{totalOrderCost.ToString("C")}\n{taxAmount.ToString("C")}\n{discountAmount.ToString("C")}\n{totalCost.ToString("C")}";
+                    discountBlocker = 1;
+                }
+                else if (discountCodeInput.Text == discountCodeThree && discountBlocker == 0)
+                {
+                    discountAmount = totalCost * discountThreeValue;
+                    totalCost = totalCost - discountAmount;
+                    totalsLabel.Text = "Subtotal\nTax\nDiscount\nTotal";
+                    totalsOutput.Text = $"{totalOrderCost.ToString("C")}\n{taxAmount.ToString("C")}\n{discountAmount.ToString("C")}\n{totalCost.ToString("C")}";
+                    discountBlocker = 1;
+                }
+                else
+                {
+                    if (discountBlocker == 1)
+                    {
+                        notValidMessageLabel.Text = "Sorry, one \ncode per \norder";
+                    }
+                    else
+                    {
+                        notValidMessageLabel.Text = "Code not valid";
+                    }                    
+                }            
+            }
+            catch
+            {
+                notValidMessageLabel.Text = "Code not valid";
+            }                         
+        }
+
+        private void changeButton_Click(object sender, EventArgs e) //calculate change
+        {
+            //clear message as process is continueing
+            notValidMessageLabel.Text = "";
+
             try //in case letters entered in tendered
             {
                 //clear error message if trying again
@@ -120,6 +189,8 @@ namespace CashRegister
 
                     //enable print receipt
                     printReceiptButton.Enabled = true;
+                    changeButton.Enabled = false;
+                    checkCodeButton.Enabled = false;
                 }                        
             }
             catch
@@ -129,7 +200,63 @@ namespace CashRegister
             
         }
 
-        private void printReceiptButton_Click(object sender, EventArgs e)
+        private void firstNewOrderButton_Click(object sender, EventArgs e) //clear order before receipt
+        {
+            //everything visible = true
+            lovePotionLabel.Visible = true;
+            numberLoveInput.Visible = true;
+            healingPotionLabel.Visible = true;
+            numberHealingInput.Visible = true;
+            spellBookLabel.Visible = true;
+            numberBookInput.Visible = true;
+            totalButton.Visible = true;
+            totalsLabel.Visible = true;
+            totalsOutput.Visible = true;
+            lineLabel.Visible = true;
+            tenderedLabel.Visible = true;
+            tenderedInput.Visible = true;
+            changeButton.Visible = true;
+            changeLabel.Visible = true;
+            changeOutput.Visible = true;
+            printReceiptButton.Visible = true;
+            firstNewOrderButton.Visible = true;
+            firstExitButton.Visible = true;
+            discountCodeInput.Visible = true;
+            checkCodeButton.Visible = true;
+
+            //receiptOutput and newOrderButton invisible
+            receiptOuput.Visible = false;
+            newOrderButton.Visible = false;
+            exitButton.Visible = false;
+
+            //clear all input boxes and output areas
+            numberLoveInput.Clear();
+            numberHealingInput.Clear();
+            numberBookInput.Clear();
+            totalsOutput.Text = "$\n$\n\n$";
+            tenderedInput.Clear();
+            changeOutput.Text = "$";
+            discountCodeInput.Clear();
+            discountBlocker = 0;
+
+            //disable buttons exept total
+            changeButton.Enabled = false;
+            printReceiptButton.Enabled = false;
+            newOrderButton.Enabled = false;
+            exitButton.Enabled = false;
+            checkCodeButton.Enabled = false;
+            totalButton.Enabled = true;
+
+            //increase order number
+            orderNumber = orderNumber + 1;
+        }
+
+        private void firstExitButton_Click(object sender, EventArgs e) //close during the purchase stage
+        {
+            Close();
+        }
+
+        private void printReceiptButton_Click(object sender, EventArgs e) //print receipt
         {
             //play printing sound
             SoundPlayer printReceiptSound = new SoundPlayer(Properties.Resources.quill_and_parchment);
@@ -153,14 +280,18 @@ namespace CashRegister
             changeLabel.Visible = false;
             changeOutput.Visible = false;
             printReceiptButton.Visible = false;
+            firstNewOrderButton.Visible = false;
+            firstExitButton.Visible = false;
+            discountCodeInput.Visible = false;
+            checkCodeButton.Visible = false;
 
             //receiptOutput and newOrderButton visible
             receiptOuput.Visible = true;
             newOrderButton.Visible = true;
-            exitButton.Visible = true;
+            exitButton.Visible = true;            
 
             //order number calculation, equal to the number of items bought
-            orderNumber = amountLovePotion + amountHealingPotion + amountSpellBook;
+            //orderNumber = amountLovePotion + amountHealingPotion + amountSpellBook;
                        
             //print one line at a time, pause inbetween
             //heading
@@ -202,6 +333,9 @@ namespace CashRegister
             receiptOuput.Text += $"\n   Tax                     {taxAmount.ToString("$ .00")}";
             Refresh();
             Thread.Sleep(pause);
+            receiptOuput.Text += $"\n   Discount              {discountAmount.ToString("$ .00")}";
+            Refresh();
+            Thread.Sleep(pause);
             receiptOuput.Text += $"\n   Total                    {totalCost.ToString("$ .00")}";
             Refresh(); 
             Thread.Sleep(pause);
@@ -226,7 +360,7 @@ namespace CashRegister
             exitButton.Enabled = true;
         }
 
-        private void newOrderButton_Click(object sender, EventArgs e)
+        private void newOrderButton_Click(object sender, EventArgs e) //start new order after printing receipt
         {
             //everything visible = true
             lovePotionLabel.Visible = true;
@@ -245,6 +379,10 @@ namespace CashRegister
             changeLabel.Visible = true;
             changeOutput.Visible = true;
             printReceiptButton.Visible = true;
+            firstNewOrderButton.Visible = true;
+            firstExitButton.Visible = true;
+            discountCodeInput.Visible = true;
+            checkCodeButton.Visible = true;
 
             //receiptOutput and newOrderButton invisible
             receiptOuput.Visible = false;
@@ -255,18 +393,25 @@ namespace CashRegister
             numberLoveInput.Clear();
             numberHealingInput.Clear();
             numberBookInput.Clear();
-            totalsOutput.Text = "$\n$\n$";
+            totalsOutput.Text = "$\n$\n\n$";
             tenderedInput.Clear();
             changeOutput.Text = "$";
+            discountCodeInput.Clear();
+            discountBlocker = 0;
 
             //disable buttons exept total
             changeButton.Enabled = false;
             printReceiptButton.Enabled = false;
             newOrderButton.Enabled = false;
             exitButton.Enabled = false;
+            checkCodeButton.Enabled = false;
+            totalButton.Enabled = true;
+
+            //increase order number
+            orderNumber = orderNumber + 1;
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
+        private void exitButton_Click(object sender, EventArgs e) //close after printing receipt
         {
             Close();
         }
@@ -275,7 +420,7 @@ namespace CashRegister
         {
             hSecretMessage.Visible = true;
             Refresh();
-            Thread.Sleep(6000);
+            Thread.Sleep(5000);
             hSecretMessage.Visible = false;
         }
 
@@ -283,7 +428,7 @@ namespace CashRegister
         {
             lSecretMessage.Visible = true;
             Refresh();
-            Thread.Sleep(6000);
+            Thread.Sleep(5000);
             lSecretMessage.Visible = false;
         }
 
@@ -291,8 +436,8 @@ namespace CashRegister
         {
             sSecretMessage.Visible = true;
             Refresh();
-            Thread.Sleep(6000);
+            Thread.Sleep(5000);
             sSecretMessage.Visible = false;
-        }                
+        }        
     }
 }
